@@ -27,7 +27,7 @@ model Form {
 
   FormSubmissions FormSubmissions[]
 
-  monthlyVisits Int[]
+  dailyVisits DailyVisit[]
 
   @@unique([name, userId])
 }
@@ -42,4 +42,14 @@ form Form @relation(fields: [formId], references: [id])
 
 content String 
 
+}
+
+
+model DailyVisit {
+  id        Int      @id @default(autoincrement())
+  date      String
+  count     Int
+
+  form      Form     @relation(fields: [formId], references: [id])
+  formId    Int
 }

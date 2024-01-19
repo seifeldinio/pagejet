@@ -3,14 +3,10 @@
 import prisma from "@/lib/prisma";
 import { formSchema, formSchemaType } from "@/schemas/form";
 import { currentUser } from "@clerk/nextjs";
+import { getCurrentMonth, getCurrentDate } from "@/lib/get-date";
+import { Form } from "@prisma/client";
 
 class UserNotFoundErr extends Error {}
-
-// Function to get the current month (1-indexed)
-const getCurrentMonth = (): number => {
-  const currentDate = new Date();
-  return currentDate.getMonth() + 1;
-};
 
 export async function GetFormStats() {
   const user = await currentUser();
@@ -99,6 +95,22 @@ export async function GetForms() {
   });
 }
 
+// GET FORM BY ID FOR BUILDER
+export async function GetFormByIdForBuilder(id: number): Promise<Form | null> {
+  const user = await currentUser();
+
+  if (!user) {
+    throw new UserNotFoundErr();
+  }
+
+  return await prisma.form.findUnique({
+    where: {
+      userId: user.id,
+      id,
+    },
+  });
+}
+
 // GET FORM BY ID
 export async function GetFormById(id: number) {
   const user = await currentUser();
@@ -111,6 +123,17 @@ export async function GetFormById(id: number) {
     where: {
       userId: user.id,
       id,
+    },
+    select: {
+      id: true,
+      userId: true,
+      name: true,
+      description: true,
+      content: true,
+      visits: true,
+      submissions: true,
+      shareURL: true,
+      dailyVisits: true, // Include dailyVisits in the select
     },
   });
 }
@@ -154,26 +177,65 @@ export async function PublishForm(id: number) {
 }
 
 // Get form content by form url (for the submit form page)
-export async function GetFormContentByUrl(formUrl: string) {
-  const currentMonth = getCurrentMonth(); // Add this line to get the current month
+export async function GetFormContentByUrl(formUrl: string): Promise<Form> {
+  const currentDate = getCurrentDate();
 
-  return await prisma.form.update({
-    select: {
-      id: true,
-      userId: true,
-      name: true,
-      content: true,
-    },
-    // Update the visits on the page
-    data: {
-      visits: {
-        increment: 1,
+  let form: Form | null;
+
+  try {
+    form = await prisma.form.update({
+      select: {
+        id: true,
+        userId: true,
+        createdAt: true,
+        published: true,
+        name: true,
+        description: true,
+        content: true,
+        visits: true,
+        submissions: true,
+        shareURL: true,
+        dailyVisits: {
+          select: {
+            date: true,
+            count: true,
+          },
+        },
       },
-    },
-    where: {
-      shareURL: formUrl,
-    },
-  });
+      data: {
+        visits: {
+          increment: 1,
+        },
+        dailyVisits: {
+          // updateMany: {
+          //   where: {
+          //     date: currentDate,
+          //   },
+          //   data: {
+          //     count: {
+          //       increment: 1,
+          //     },
+          //   },
+          // },
+          create: {
+            date: currentDate,
+            count: 1,
+          },
+        },
+      },
+      where: {
+        shareURL: formUrl,
+      },
+    });
+  } finally {
+    await prisma.$disconnect();
+  }
+
+  if (!form) {
+    throw new Error("Form not found.");
+  }
+
+  return form;
 }
 
 // SUBMIT FORM

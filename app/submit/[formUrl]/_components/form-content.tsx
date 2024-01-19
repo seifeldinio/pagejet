@@ -95,7 +95,7 @@ function FormContent({
 
   //   If the form is submitted
   if (submitted) {
-    return <SubmittedNotice />;
+    return <SubmittedNotice formName={formInfo.name} />;
   }
 
   return (

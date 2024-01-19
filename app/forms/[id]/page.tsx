@@ -26,7 +26,7 @@ async function FormDetailsPage({ params }: { params: { id: string } }) {
   }
 
   // Calculate the statistics
-  const { visits, submissions, monthlyVisits } = form;
+  const { visits, submissions, dailyVisits } = form;
 
   let submissionRate = 0;
 
@@ -63,11 +63,11 @@ async function FormDetailsPage({ params }: { params: { id: string } }) {
 
             <div className="flex flex-row space-x-3">
               <Button variant="secondary" size="sm" className="cursor-default">
-                Monthly
+                Daily
               </Button>
             </div>
           </div>
-          <Chart monthlyVisits={monthlyVisits} />
+          <Chart dailyVisits={dailyVisits} />
         </div>
         <div className="flex flex-col w-[320px] h-[420px]">
           <StatsCard

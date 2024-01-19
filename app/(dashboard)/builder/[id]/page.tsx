@@ -1,9 +1,9 @@
-import { GetFormById } from "@/actions/form";
+import { GetFormByIdForBuilder } from "@/actions/form";
 import FormBuilder from "./_components/form-builder";
 
 async function BuilderPage({ params }: { params: { id: string } }) {
   const { id } = params;
-  const form = await GetFormById(Number(id));
+  const form = await GetFormByIdForBuilder(Number(id));
 
   if (!form) {
     throw new Error("Form not found");

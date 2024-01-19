@@ -4,11 +4,11 @@ import React from "react";
 import Footer from "./footer";
 import { Button } from "@/components/ui/button";
 
-function SubmittedNotice() {
+function SubmittedNotice({ formName }: { formName: string }) {
   return (
     <div className="flex flex-col w-full h-full items-center p-8">
       <div className="pb-4 border-b border-muted w-full max-w-[620px]">
-        <h1 className="text-2xl font-bold">Form name</h1>
+        <h1 className="text-2xl font-bold">{formName}</h1>
         <p className="text-muted-foreground">
           Your response has been recorded.
         </p>
