@@ -16,9 +16,12 @@ import { Separator } from "@/components/ui/separator";
 import BackButton from "./_components/back-button";
 import StatsCardSwitch from "@/components/stats-card-switch";
 import TableSubmissions from "./_components/table/table-submissions";
+import { useRouter } from "next/navigation";
+import EditButton from "./_components/buttons/edit-button";
 
 async function FormDetailsPage({ params }: { params: { id: string } }) {
   const { id } = params;
+
   const form = await GetFormById(Number(id));
 
   if (!form) {
@@ -45,9 +48,7 @@ async function FormDetailsPage({ params }: { params: { id: string } }) {
             <h1 className="text-3xl font-bold truncate ml-1.5 mr-2.5">
               {form.name}
             </h1>
-            <Button size="icon" className="h-8 w-8" variant="outline">
-              <Pencil className="h-4 w-4" />
-            </Button>
+            <EditButton formId={form.id} />
           </div>
           <div className="flex flex-row items-center space-x-3.5">
             <CopyButton shareUrl={form.shareURL} />

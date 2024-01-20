@@ -15,7 +15,7 @@ import { toast } from "@/components/ui/use-toast";
 import useDesigner from "@/hooks/use-designer";
 import { Check, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React, { startTransition, useTransition } from "react";
+import { useTransition } from "react";
 
 const PublishButton = ({ id }: { id: number }) => {
   const router = useRouter();
