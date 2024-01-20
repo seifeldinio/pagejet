@@ -84,6 +84,15 @@
   width: 20rem;
 }
 
+.cl-formButtonPrimary {
+  background-color: #cfc9f3;
+  color: black;
+}
+
+.cl-formButtonPrimary:hover {
+  background-color: #dad5fa;
+}
+
 /* Fade in */
 .fade-in {
   animation-name: fade-in;

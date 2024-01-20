@@ -29,7 +29,7 @@ function FormBuilder({ form }: { form: Form }) {
   const router = useRouter();
 
   // To get the saved form content and update the state
-  const { setElements } = useDesigner();
+  const { setElements, setSelectedElement } = useDesigner();
 
   // State to make sure the form is ready
   const [isReady, setIsReady] = useState(false);
@@ -55,9 +55,10 @@ function FormBuilder({ form }: { form: Form }) {
     if (isReady) return;
     const elements = JSON.parse(form.content);
     setElements(elements);
+    setSelectedElement(null);
     const readyTimeout = setTimeout(() => setIsReady(true), 500);
     return () => clearTimeout(readyTimeout);
-  }, [form, setElements]);
+  }, [form, setElements, setSelectedElement]);
 
   if (!isReady) {
     return <Loading />;

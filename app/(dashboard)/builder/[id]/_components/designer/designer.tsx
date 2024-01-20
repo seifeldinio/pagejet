@@ -128,7 +128,7 @@ function Designer() {
   });
 
   return (
-    <div className="flex w-full h-full ">
+    <div className="flex w-full h-full">
       <div
         className="p-4 w-full"
         onClick={() => {
@@ -138,9 +138,11 @@ function Designer() {
       >
         <div
           ref={droppable.setNodeRef}
+          // max-w-[920px]
           className={cn(
-            "bg-background max-w-[920px] h-full m-auto rounded-xl flex flex-col flex-grow items-center justify-start flex-1 overflow-y-auto",
-            droppable.isOver && "ring-4 dark:ring-primary ring-purple800 ring-inset"
+            "bg-background max-w-[620px] h-full m-auto rounded-xl flex flex-col flex-grow items-center justify-start flex-1 overflow-y-auto",
+            droppable.isOver &&
+              "ring-4 dark:ring-primary ring-purple800 ring-inset"
           )}
         >
           {!droppable.isOver && elements.length === 0 && (
@@ -211,7 +213,7 @@ function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
       ref={draggable.setNodeRef}
       {...draggable.listeners}
       {...draggable.attributes}
-      className="relative h-[120px] flex flex-col text-foreground hover:cursor-pointer rounded-lg"
+      className="relative flex flex-col text-foreground hover:cursor-pointer rounded-lg"
       onMouseEnter={() => {
         setMouseIsOver(true);
       }}
@@ -248,7 +250,8 @@ function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
             </Button>
           </div>
           {/* Hint */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
+            {/* animate-pulse */}
             <p className="text-muted-foreground text-sm">
               👉 Click for Properties, or 🖱️ Drag to Move
             </p>
@@ -262,8 +265,8 @@ function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
 
       <div
         className={cn(
-          "flex w-full h-[120px] items-center rounded-lg pointer-events-none opacity-100",
-          mouseIsOver && "opacity-30"
+          "flex w-full  items-center rounded-lg pointer-events-none opacity-100",
+          mouseIsOver && "opacity-10"
         )}
       >
         <DesignerElement elementInstance={element} />

@@ -36,6 +36,11 @@ async function TableSubmissions({ id }: { id: number }) {
   formElements.forEach((element) => {
     switch (element.type) {
       case "TextInput":
+      case "Number":
+      case "TextArea":
+      case "DatePicker":
+      case "Select":
+      case "Checkbox":
         columns.push({
           id: element.id,
           label: element.extraAttributes?.label,

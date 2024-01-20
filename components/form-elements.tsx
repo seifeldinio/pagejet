@@ -1,6 +1,27 @@
-import { TextInputFormElement } from "@/components/fields/text-input";
+import { SubtitleFormElement } from "@/components/elements/subtitle";
+import { TextInputFormElement } from "@/components/elements/text-input";
+import { TitleFormElement } from "@/components/elements/title";
+import { ParagraphFormElement } from "@/components/elements/paragraph";
+import { SeparatorFormElement } from "@/components/elements/separator";
+import { SpacerFormElement } from "@/components/elements/spacer";
+import { NumberFormElement } from "@/components/elements/number";
+import { TextAreaFormElement } from "@/components/elements/text-area";
+import { DatePickerFormElement } from "@/components/elements/date-picker";
+import { SelectFormElement } from "@/components/elements/select";
+import { CheckboxFormElement } from "@/components/elements/checkbox";
 
-export type ElementsType = "TextInput";
+export type ElementsType =
+  | "TextInput"
+  | "Title"
+  | "Subtitle"
+  | "Paragraph"
+  | "Separator"
+  | "Spacer"
+  | "Number"
+  | "TextArea"
+  | "DatePicker"
+  | "Select"
+  | "Checkbox";
 
 export type SubmitFunction = (key: string, value: string) => void;
 
@@ -39,4 +60,14 @@ type FormElementsType = {
 };
 export const FormElements: FormElementsType = {
   TextInput: TextInputFormElement,
+  Title: TitleFormElement,
+  Subtitle: SubtitleFormElement,
+  Paragraph: ParagraphFormElement,
+  Separator: SeparatorFormElement,
+  Spacer: SpacerFormElement,
+  Number: NumberFormElement,
+  TextArea: TextAreaFormElement,
+  DatePicker: DatePickerFormElement,
+  Select: SelectFormElement,
+  Checkbox: CheckboxFormElement,
 };
