@@ -19,11 +19,10 @@ import PublishButton from "./buttons/publish-button";
 import SaveButton from "./buttons/save-button";
 import Designer from "./designer/designer";
 import DragOverlayWrapper from "./drag-overlay-wrapper";
-import Loading from "../loading";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import Link from "next/link";
-import PublishedNotice from "./published-notice";
+import Loading from "@/components/loading";
 
 function FormBuilder({ form }: { form: Form }) {
   const router = useRouter();
@@ -64,12 +63,12 @@ function FormBuilder({ form }: { form: Form }) {
     return <Loading />;
   }
 
-  // If the form is published
-  const shareUrl = `${window.location.origin}/submit/${form.shareURL}`;
+  // // If the form is published
+  // const shareUrl = `${window.location.origin}/submit/${form.shareURL}`;
 
-  if (form.published) {
-    return <PublishedNotice shareUrl={shareUrl} id={form.id} />;
-  }
+  // if (form.published) {
+  //   return <PublishedNotice shareUrl={shareUrl} id={form.id} />;
+  // }
 
   return (
     <DndContext sensors={sensors}>

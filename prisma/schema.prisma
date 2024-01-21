@@ -65,8 +65,19 @@ model Page {
   icon          String?
   isPublished   Boolean
   visits        Int       @default(0)
+  shareURL        String            @unique @default(uuid())
+  pageDailyVisits PageDailyVisit[]
   createdAt DateTime @default(now())
 
   @@unique([title, userId])
 }
 
+
+model PageDailyVisit {
+  id        Int      @id @default(autoincrement())
+  date      String
+  count     Int
+
+  page      Page     @relation(fields: [pageId], references: [id])
+  pageId    Int
+}

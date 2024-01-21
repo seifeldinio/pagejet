@@ -121,8 +121,14 @@ const PageCard = ({ page }: { page: Page }) => {
       <CardContent className="h-[132px] w-full rounded-lg pb-2">
         {/* {form.description || ""} */}
         <img
-          src="https://miro.medium.com/v2/resize:fit:998/1*lODfmCNtkX9jRqGfPcqh0w.jpeg"
-          className="object-cover h-full w-full rounded-lg"
+          src={page.coverImage || "/images/placeholder.webp"}
+          className="object-cover h-full w-full rounded-lg dark:hidden"
+          alt="Cover"
+          draggable={false}
+        />
+        <img
+          src={page.coverImage || "/images/placeholder-dark.webp"}
+          className="object-cover h-full w-full rounded-lg hidden dark:block"
           alt="Cover"
           draggable={false}
         />
@@ -134,17 +140,17 @@ const PageCard = ({ page }: { page: Page }) => {
             <Button
               size="sm"
               variant="outline"
-              className="flex flex-row items-center space-x-1.5 w-full text-sm mt-2"
+              className="flex flex-row items-center space-x-1.5 w-full text-sm mt-2 dark:bg-primary dark:text-black"
               asChild
             >
-              <Link href={`/pages/${page.id}`}>
+              <Link href={`/live/${page.shareURL}`} target="_blank">
                 <span>View</span> <ExternalLink className="w-3 h-auto" />
               </Link>
             </Button>
             <Button
               size="sm"
               variant="outline"
-              className="flex flex-row items-center space-x-1.5 w-full text-sm mt-2"
+              className="flex flex-row items-center space-x-1.5 w-full text-sm mt-2 dark:bg-primary dark:text-black"
               asChild
             >
               <Link href={`/pages/builder/${page.id}`}>

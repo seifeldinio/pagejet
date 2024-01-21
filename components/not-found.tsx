@@ -1,14 +1,8 @@
-"use client";
-
+import React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useEffect } from "react";
 
-const ErrorPage = ({ error }: { error: Error }) => {
-  useEffect(() => {
-    console.log(error);
-  }, [error]);
-
+function NotFound() {
   return (
     <div className="flex w-full h-full flex-col items-center justify-center gap-4 pb-12">
       <div className="w-[160px]">
@@ -26,7 +20,7 @@ const ErrorPage = ({ error }: { error: Error }) => {
         />
       </div>
       {/* <div className="flex flex-col items-center justify-center"> */}
-      <h2>Something went wrong!</h2>
+      <h2>Page not found.</h2>
       {/* <h3>😶</h3> */}
       {/* </div> */}
       <Button asChild>
@@ -34,6 +28,6 @@ const ErrorPage = ({ error }: { error: Error }) => {
       </Button>
     </div>
   );
-};
+}
 
-export default ErrorPage;
+export default NotFound;

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { ArrowLeft, FileBarChart2, Globe2, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -5,15 +7,24 @@ import { toast } from "@/components/ui/use-toast";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Confetti from "react-confetti";
+import { useOrigin } from "@/hooks/use-origin";
+import Loading from "@/components/loading";
 
-function PublishedNotice({ shareUrl, id }: { shareUrl: string; id: number }) {
+export const PublishedNotice = ({ url, id }: { url: string; id: number }) => {
+  const origin = useOrigin();
+
+  const shareUrl = `${origin}/submit/${url}`;
+
+  if (!origin) {
+    return <Loading />;
+  }
+
   return (
     <>
       <Confetti
         width={window.innerWidth}
         height={window.innerHeight}
         recycle={false}
-        
       />
       <div className="flex flex-col items-center justify-center h-full w-full">
         <div className="max-w-md">
@@ -66,6 +77,4 @@ function PublishedNotice({ shareUrl, id }: { shareUrl: string; id: number }) {
       </div>
     </>
   );
-}
-
-export default PublishedNotice;
+};

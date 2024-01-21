@@ -6,16 +6,14 @@ import { useMemo } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { usePageDesignerContext } from "@/context/page-designer-context";
 import { Page } from "@prisma/client";
-import NotFound from "../../../../../../../components/not-found";
-import Cover from "../../../../../../../components/cover";
-import Toolbar from "../../../../../../../components/toolbar";
+import Cover from "@/components/cover";
+import Toolbar from "@/components/toolbar";
+import ErrorPage from "@/components/error";
+import NotFound from "@/components/not-found";
 
-function PageDesigner({ page }: { page: Page }) {
+function LivePage({ page }: { page: Page }) {
   const Editor = useMemo(
-    () =>
-      dynamic(() => import("../../../../../../../components/editor"), {
-        ssr: false,
-      }),
+    () => dynamic(() => import("@/components/editor"), { ssr: false }),
     []
   );
 
@@ -51,15 +49,19 @@ function PageDesigner({ page }: { page: Page }) {
   }
 
   return (
-    <div className="pb-40 w-full ">
-      <Cover url={coverImage} />
+    <div className="pb-40 w-full dark:dark:bg-[#1F1F1F]">
+      <Cover preview url={coverImage} />
       <div className="md:max-w-3xl lg:max-w-4xl mx-auto">
-        <Toolbar initialData={page} />
-        <Editor onChange={onChange} initialContent={page.content} />
+        <Toolbar preview initialData={page} />
+        <Editor
+          editable={false}
+          onChange={onChange}
+          initialContent={page.content}
+        />
         <div className="h-40" />
       </div>
     </div>
   );
 }
 
-export default PageDesigner;
+export default LivePage;

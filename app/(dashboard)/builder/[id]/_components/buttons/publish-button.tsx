@@ -33,7 +33,7 @@ const PublishButton = ({ id }: { id: number }) => {
         title: "🎉 Published!",
         description: "Your form is now accessible to the public.",
       });
-      router.refresh();
+      router.push(`/builder/${id}/published`);
     } catch (error) {
       toast({
         title: "Error",
@@ -53,7 +53,7 @@ const PublishButton = ({ id }: { id: number }) => {
 
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you sure? ✋</AlertDialogTitle>
+          <AlertDialogTitle>Publish ✨</AlertDialogTitle>
           <AlertDialogDescription>
             Publishing makes this form live and ready to collect submissions.
             {/* <span 

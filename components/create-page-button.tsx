@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -66,8 +67,8 @@ function CreatePageButton() {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create page</DialogTitle>
-          {/* <DialogDescription>Create a new blank web page</DialogDescription> */}
+          <DialogTitle>Create page 🌐</DialogTitle>
+          <DialogDescription>Create a new blank web page</DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">

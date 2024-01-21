@@ -297,3 +297,66 @@ export async function RemoveCoverImage(id: number) {
 
   return page;
 }
+
+// Get page by url (for the live page)
+export async function GetPageByUrl(formUrl: string): Promise<Page> {
+  const currentDate = getCurrentDate();
+
+  let page: Page | null;
+
+  try {
+    page = await prisma.page.update({
+      select: {
+        id: true,
+        userId: true,
+        createdAt: true,
+        isArchived: true,
+        isPublished: true,
+        title: true,
+        content: true,
+        coverImage: true,
+        icon: true,
+        visits: true,
+        shareURL: true,
+        pageDailyVisits: {
+          select: {
+            date: true,
+            count: true,
+          },
+        },
+      },
+      data: {
+        visits: {
+          increment: 1,
+        },
+        pageDailyVisits: {
+          // updateMany: {
+          //   where: {
+          //     date: currentDate,
+          //   },
+          //   data: {
+          //     count: {
+          //       increment: 1,
+          //     },
+          //   },
+          // },
+          create: {
+            date: currentDate,
+            count: 1,
+          },
+        },
+      },
+      where: {
+        shareURL: formUrl,
+      },
+    });
+  } finally {
+    await prisma.$disconnect();
+  }
+
+  if (!page) {
+    throw new Error("Form not found.");
+  }
+
+  return page;
+}

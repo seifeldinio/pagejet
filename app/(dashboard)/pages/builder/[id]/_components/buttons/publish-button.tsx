@@ -1,6 +1,7 @@
 "use client";
 
 import { PublishForm, UpdateFormContent } from "@/actions/form";
+import { UpdatePage } from "@/actions/page";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -14,32 +15,43 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
+import { usePageDesignerContext } from "@/context/page-designer-context";
 import useDesigner from "@/hooks/use-designer";
+import { useOrigin } from "@/hooks/use-origin";
 import { Check, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 
 const PublishButton = ({ id }: { id: number }) => {
+  // const origin = useOrigin();
   const router = useRouter();
 
-  const { elements } = useDesigner();
+  // const { elements } = useDesigner();
+
+  const { title, icon, coverImage, content } = usePageDesignerContext();
 
   const [loading, startTransition] = useTransition();
 
-  async function publishForm() {
+  async function publishPage() {
     try {
-      const jsonElements = JSON.stringify(elements);
-      await UpdateFormContent(id, jsonElements);
-      await PublishForm(id);
+      await UpdatePage({
+        id: id,
+        title: title,
+        icon: icon,
+        coverImage: coverImage,
+        content: content,
+        isPublished: true,
+      });
       toast({
         title: "🎉 Published!",
-        description: "Your form is now accessible to the public.",
+        description: "Your page is now live to the public.",
       });
-      router.refresh();
+      router.push(`/pages/builder/${id}/published`);
     } catch (error) {
       toast({
         title: "Error",
         description: "Something went wrong",
+        variant: "default",
       });
     }
   }
@@ -48,16 +60,16 @@ const PublishButton = ({ id }: { id: number }) => {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button size="sm" variant="green" className="space-x-1">
-          {/* <Check className="h-4 w-auto" /> */}
+          <Check className="h-4 w-auto" />
           <span>Publish</span>
         </Button>
       </AlertDialogTrigger>
 
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you sure? ✋</AlertDialogTitle>
+          <AlertDialogTitle>Publish ✨</AlertDialogTitle>
           <AlertDialogDescription>
-            Publishing makes this form live and ready to collect submissions.
+            Publishing makes this page live on the internet.
             {/* <span 
             className="font-medium">
               Publishing makes this form live and ready to collect submissions.
@@ -72,7 +84,7 @@ const PublishButton = ({ id }: { id: number }) => {
             disabled={loading}
             onClick={(e) => {
               e.preventDefault();
-              startTransition(publishForm);
+              startTransition(publishPage);
             }}
           >
             <span>Continue</span>

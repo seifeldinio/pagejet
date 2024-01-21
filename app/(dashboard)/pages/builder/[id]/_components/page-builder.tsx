@@ -12,7 +12,7 @@ import PublishButton from "./buttons/publish-button";
 import TitleComponent from "./title-component";
 import BackButton from "@/components/back-button";
 import PageDesigner from "./page-designer/page-designer";
-import Loading from "../loading";
+import Loading from "@/components/loading";
 
 function PageBuilder({ page }: { page: Page }) {
   // State to make sure the page is ready
