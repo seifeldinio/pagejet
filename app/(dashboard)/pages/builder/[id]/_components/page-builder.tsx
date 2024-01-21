@@ -13,6 +13,7 @@ import TitleComponent from "./title-component";
 import BackButton from "@/components/back-button";
 import PageDesigner from "./page-designer/page-designer";
 import Loading from "@/components/loading";
+import UnpublishButton from "./buttons/unpublish-button";
 
 function PageBuilder({ page }: { page: Page }) {
   // State to make sure the page is ready
@@ -49,10 +50,15 @@ function PageBuilder({ page }: { page: Page }) {
         </div>
         <div className="flex items-center gap-3">
           <PreviewButton />
+          <SaveButton id={page.id} />
           {!page.isPublished && (
             <>
-              <SaveButton id={page.id} />
               <PublishButton id={page.id} />
+            </>
+          )}
+          {page.isPublished && (
+            <>
+              <UnpublishButton id={page.id} />
             </>
           )}
         </div>

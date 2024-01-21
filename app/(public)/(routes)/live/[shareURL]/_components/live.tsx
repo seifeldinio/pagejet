@@ -10,6 +10,8 @@ import Cover from "@/components/cover";
 import Toolbar from "@/components/toolbar";
 import ErrorPage from "@/components/error";
 import NotFound from "@/components/not-found";
+import Footer from "./footer";
+import Branding from "./branding";
 
 function LivePage({ page }: { page: Page }) {
   const Editor = useMemo(
@@ -49,18 +51,22 @@ function LivePage({ page }: { page: Page }) {
   }
 
   return (
-    <div className="pb-40 w-full dark:dark:bg-[#1F1F1F]">
-      <Cover preview url={coverImage} />
-      <div className="md:max-w-3xl lg:max-w-4xl mx-auto">
-        <Toolbar preview initialData={page} />
-        <Editor
-          editable={false}
-          onChange={onChange}
-          initialContent={page.content}
-        />
-        <div className="h-40" />
+    <>
+      <Branding />
+      <div className=" w-full dark:dark:bg-[#1F1F1F]">
+        <Cover preview url={coverImage} />
+        <div className="md:max-w-3xl lg:max-w-4xl mx-auto">
+          <Toolbar preview initialData={page} />
+          <Editor
+            editable={false}
+            onChange={onChange}
+            initialContent={page.content}
+          />
+          <div className="h-40" />
+        </div>
+        <Footer />
       </div>
-    </div>
+    </>
   );
 }
 

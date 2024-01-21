@@ -176,6 +176,25 @@ export async function PublishForm(id: number) {
   });
 }
 
+// UNPUBLISH FORM
+export async function UnpublishForm(id: number) {
+  const user = await currentUser();
+
+  if (!user) {
+    throw new UserNotFoundErr();
+  }
+
+  return await prisma.form.update({
+    data: {
+      published: false,
+    },
+    where: {
+      userId: user.id,
+      id,
+    },
+  });
+}
+
 // Get form content by form url (for the submit form page)
 export async function GetFormContentByUrl(formUrl: string): Promise<Form> {
   const currentDate = getCurrentDate();

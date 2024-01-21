@@ -23,6 +23,7 @@ import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import Link from "next/link";
 import Loading from "@/components/loading";
+import UnpublishButton from "./buttons/unpublish-button";
 
 function FormBuilder({ form }: { form: Form }) {
   const router = useRouter();
@@ -100,10 +101,15 @@ function FormBuilder({ form }: { form: Form }) {
           </div>
           <div className="flex items-center gap-3">
             <PreviewButton />
+            <SaveButton id={form.id} />
             {!form.published && (
               <>
-                <SaveButton id={form.id} />
                 <PublishButton id={form.id} />
+              </>
+            )}
+            {form.published && (
+              <>
+                <UnpublishButton id={form.id} />
               </>
             )}
           </div>
