@@ -13,7 +13,7 @@ import {
   TrendingUpIcon,
 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import BackButton from "./_components/back-button";
+import BackButton from "../../../components/back-button";
 import StatsCardSwitch from "@/components/stats-card-switch";
 import TableSubmissions from "./_components/table/table-submissions";
 import { useRouter } from "next/navigation";

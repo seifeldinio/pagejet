@@ -79,7 +79,7 @@ function FormBuilder({ form }: { form: Form }) {
           <div className="flex flex-row items-center">
             <Button
               size="icon"
-              className="h-8 w-8"
+              className="h-8 w-8 rounded-full"
               variant="ghost"
               onClick={() => {
                 router.back();

@@ -115,6 +115,23 @@
   }
 }
 
+/* Page fade in transition */
+.page-fade {
+  animation-name: fade-in-page;
+  animation-fill-mode: both;
+  animation-duration: 0.3s;
+}
+
+@keyframes fade-in-page {
+  0% {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 /* To hide scrollbars from specific sections */
 /* Hide scrollbar for Chrome, Safari and Opera */
 .hide-scroll::-webkit-scrollbar {

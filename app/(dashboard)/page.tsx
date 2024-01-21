@@ -24,7 +24,7 @@ export default function Home() {
         <CardStatsWrapper />
       </Suspense>
 
-      <h2 className="text-3xl font-bold col-span-2 mt-12">Forms</h2>
+      <Title />
       <Separator className="my-5" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
         <CreateFormCard />
@@ -44,6 +44,21 @@ export default function Home() {
 async function CardStatsWrapper() {
   const stats = await GetFormStats();
   return <CardsGrid loading={false} data={stats} />;
+}
+
+// Title
+async function Title() {
+  const forms = await GetForms();
+  return (
+    <div className="flex flex-row items-center space-x-2 mt-12">
+      <h2 className="text-3xl font-bold col-span-2">Forms</h2>
+      {forms.length !== 0 && (
+        <span className="flex items-center justify-center text-[#524a3ecd] bg-[#a59e922f] dark:bg-[#2D2D2D] dark:text-[#E8E8E8] py-1 px-2 text-sm rounded-full">
+          {forms.length}
+        </span>
+      )}
+    </div>
+  );
 }
 
 // Forms cards wrapper

@@ -53,3 +53,20 @@ model DailyVisit {
   form      Form     @relation(fields: [formId], references: [id])
   formId    Int
 }
+
+
+model Page {
+  id            Int        @id @default(autoincrement())
+  title         String
+  userId        String
+  isArchived    Boolean
+  content       String?
+  coverImage    String?
+  icon          String?
+  isPublished   Boolean
+  visits        Int       @default(0)
+  createdAt DateTime @default(now())
+
+  @@unique([title, userId])
+}
+

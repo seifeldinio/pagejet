@@ -6,6 +6,10 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import DesignerContextProvider from "@/context/designer-context";
 import NextTopLoader from "nextjs-toploader";
+import { PageDesignerContextProvider } from "@/context/page-designer-context";
+import { CoverImageProvider } from "@/context/cover-image-context";
+import { EdgeStoreProvider } from "@/lib/edgestore";
+import { ModalProvider } from "@/providers/modal-provider";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -28,15 +32,22 @@ export default function RootLayout({
         >
           <NextTopLoader color="#CFC9F3" showSpinner={false} />
           <DesignerContextProvider>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="light"
-              enableSystem
-              disableTransitionOnChange
-            >
-              {children}
-              <Toaster />
-            </ThemeProvider>
+            <PageDesignerContextProvider>
+              <CoverImageProvider>
+                <EdgeStoreProvider>
+                  <ThemeProvider
+                    attribute="class"
+                    defaultTheme="light"
+                    enableSystem
+                    disableTransitionOnChange
+                  >
+                    {children}
+                    <Toaster />
+                    <ModalProvider />
+                  </ThemeProvider>
+                </EdgeStoreProvider>
+              </CoverImageProvider>
+            </PageDesignerContextProvider>
           </DesignerContextProvider>
         </body>
       </html>
