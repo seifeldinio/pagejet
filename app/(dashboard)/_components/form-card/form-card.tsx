@@ -17,7 +17,7 @@ import Link from "next/link";
 
 const FormCard = ({ form }: { form: Form }) => {
   return (
-    <Card className="h-[242px] hover:shadow-md transition-all duration-150 ease-in-out">
+    <Card className="h-[242px] dark:bg-[#1D1D1D] dark:border-[#494949] hover:shadow-md transition-all duration-150 ease-in-out">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 justify-between">
           {form.published && <Badge variant="green">Published</Badge>}
@@ -51,7 +51,7 @@ const FormCard = ({ form }: { form: Form }) => {
           <Button
             size="sm"
             variant="outline"
-            className="flex flex-row items-center space-x-1.5 w-full text-sm mt-2"
+            className="flex flex-row items-center space-x-1.5 w-full text-sm mt-2 dark:bg-primary dark:text-black"
             asChild
           >
             <Link href={`/forms/${form.id}`}>
@@ -63,7 +63,7 @@ const FormCard = ({ form }: { form: Form }) => {
           <Button
             size="sm"
             variant="outline"
-            className="flex flex-row items-center space-x-1.5 w-full text-sm mt-2"
+            className="flex flex-row items-center space-x-1.5 w-full text-sm mt-2 dark:bg-primary dark:text-black"
             asChild
           >
             <Link href={`/builder/${form.id}`}>

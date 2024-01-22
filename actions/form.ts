@@ -300,3 +300,23 @@ export async function GetFormWithSubmissions(id: number) {
     },
   });
 }
+
+// SEARCH FORMS
+export async function GetFormsSearch() {
+  const user = await currentUser();
+
+  if (!user) {
+    throw new UserNotFoundErr();
+  }
+
+  const forms = await prisma.form.findMany({
+    where: {
+      userId: user.id,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  return forms;
+}

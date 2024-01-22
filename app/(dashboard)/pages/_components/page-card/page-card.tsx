@@ -74,9 +74,15 @@ const PageCard = ({ page }: { page: Page }) => {
         </CardTitle> */}
         <div className="flex flex-row items-center justify-between">
           <div className="flex flex-row items-center space-x-2">
-            <span className="truncate font-bold max-w-[140px]">
+            <div className="flex flex-row items-center space-x-1.5">
+              {page.icon && <span className="text-xs">{page.icon}</span>}
+              <span className="truncate font-bold max-w-[140px]">
+                {page.title}
+              </span>
+            </div>
+            {/* <span className="truncate font-bold max-w-[140px]">
               {page.title}
-            </span>
+            </span> */}
             {page.isPublished && (
               <div className="h-2 w-2 rounded-full bg-[#ADE89D]" />
             )}

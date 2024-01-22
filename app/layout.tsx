@@ -10,6 +10,8 @@ import { PageDesignerContextProvider } from "@/context/page-designer-context";
 import { CoverImageProvider } from "@/context/cover-image-context";
 import { EdgeStoreProvider } from "@/lib/edgestore";
 import { ModalProvider } from "@/providers/modal-provider";
+import { SearchProvider } from "@/context/form-search-context";
+import { PagesSearchProvider } from "@/context/page-search-context";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -34,18 +36,22 @@ export default function RootLayout({
           <DesignerContextProvider>
             <PageDesignerContextProvider>
               <CoverImageProvider>
-                <EdgeStoreProvider>
-                  <ThemeProvider
-                    attribute="class"
-                    defaultTheme="light"
-                    enableSystem
-                    disableTransitionOnChange
-                  >
-                    {children}
-                    <Toaster />
-                    <ModalProvider />
-                  </ThemeProvider>
-                </EdgeStoreProvider>
+                <SearchProvider>
+                  <PagesSearchProvider>
+                    <EdgeStoreProvider>
+                      <ThemeProvider
+                        attribute="class"
+                        defaultTheme="light"
+                        enableSystem
+                        disableTransitionOnChange
+                      >
+                        {children}
+                        <Toaster />
+                        <ModalProvider />
+                      </ThemeProvider>
+                    </EdgeStoreProvider>
+                  </PagesSearchProvider>
+                </SearchProvider>
               </CoverImageProvider>
             </PageDesignerContextProvider>
           </DesignerContextProvider>

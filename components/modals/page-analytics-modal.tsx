@@ -58,7 +58,12 @@ const PageAnalyticsModal = ({
   const { visits, pageDailyVisits } = page;
 
   return (
-    <Modal title="Analytics" isOpen={isOpen} onClose={onClose}>
+    <Modal
+      title="Analytics"
+      isOpen={isOpen}
+      onClose={onClose}
+      className="max-w-[50vw]"
+    >
       <div className="flex flex-col flex-1 h-[420px] rounded-lg border border-[#EAEAEA] dark:border-[#494949] bg-background dark:bg-[#1D1D1D] p-5">
         <div className="flex flex-row items-center justify-between">
           <div className="flex flex-row items-center justify-center space-x-1.5">

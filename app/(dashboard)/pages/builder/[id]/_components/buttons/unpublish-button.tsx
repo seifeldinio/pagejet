@@ -14,6 +14,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
 import { toast } from "@/components/ui/use-toast";
 import { usePageDesignerContext } from "@/context/page-designer-context";
 import useDesigner from "@/hooks/use-designer";
@@ -26,6 +27,8 @@ const UnpublishButton = ({ id }: { id: number }) => {
   // const origin = useOrigin();
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
+
+  const [isHovered, setIsHovered] = useState(false);
 
   // const { elements } = useDesigner();
 
@@ -68,14 +71,20 @@ const UnpublishButton = ({ id }: { id: number }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button
-          size="sm"
-          variant="outline"
-          className="space-x-1 border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+        <div
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
-          {/* <Check className="h-4 w-auto" /> */}
-          <span>Unpublish</span>
-        </Button>
+          {isHovered ? (
+            <Label className="bg-red-500 text-white dark:bg-red-500 px-1.5 py-0.5 rounded-full text-xs font-normal cursor-pointer hover:scale-105 transition-all ease-in-out duration-150">
+              Unpublish
+            </Label>
+          ) : (
+            <Label className="bg-green500 text-black dark:bg-green500/90 px-1.5 py-0.5 rounded-full text-xs font-normal">
+              Published
+            </Label>
+          )}
+        </div>
       </AlertDialogTrigger>
 
       <AlertDialogContent>

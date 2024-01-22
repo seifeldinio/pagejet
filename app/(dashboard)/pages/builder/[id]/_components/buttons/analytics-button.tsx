@@ -21,8 +21,10 @@ import React, { useState } from "react";
 
 const AnalyticsButton = ({
   onClick,
+  visits,
 }: {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
+  visits: number;
 }) => {
   return (
     <>
@@ -31,6 +33,7 @@ const AnalyticsButton = ({
         size="sm"
         variant="outline"
         className="space-x-1"
+        disabled={visits === 0}
       >
         <BarChart3 className="h-4 w-auto" />
         <span>Analytics</span>

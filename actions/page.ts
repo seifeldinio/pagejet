@@ -383,3 +383,24 @@ export async function GetPageByUrl(formUrl: string): Promise<Page> {
 
   return page;
 }
+
+// SEARCH PAGES
+export async function GetPagesSearch() {
+  const user = await currentUser();
+
+  if (!user) {
+    throw new UserNotFoundErr();
+  }
+
+  const pages = await prisma.page.findMany({
+    where: {
+      userId: user.id,
+      isArchived: false,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  return pages;
+}

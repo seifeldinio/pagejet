@@ -3,6 +3,8 @@ import React, { ReactNode } from "react";
 import Navbar from "@/components/navbar";
 import { usePathname } from "next/navigation";
 import BuilderNavbar from "./builder/[id]/_components/navbar-builder";
+import { PagesSearchCommand } from "@/components/pages-search-command";
+import { FormsSearchCommand } from "@/components/forms-search-command";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   const currentPage = usePathname();
@@ -12,6 +14,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
 
   return (
     <div className="flex flex-col min-h-screen min-w-full bg-background max-h-screen">
+
       {!isBuilderPage && <Navbar />}
       {isBuilderPage && <BuilderNavbar />}
 

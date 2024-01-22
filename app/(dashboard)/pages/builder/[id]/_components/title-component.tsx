@@ -17,7 +17,7 @@ export default function TitleComponent({ initialData }: { initialData: Page }) {
   //   initialData.title || "Untitled"
   // );
 
-  const { title, setTitle } = usePageDesignerContext();
+  const { title, setTitle, icon, setIcon } = usePageDesignerContext();
 
   const enableInput = () => {
     setTitle(initialData.title);
@@ -41,14 +41,15 @@ export default function TitleComponent({ initialData }: { initialData: Page }) {
   const onKeyDown = async (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       try {
-        await UpdatePage({
-          id: initialData.id,
-          title: title || "Untitled",
-        });
+        // await UpdatePage({
+        //   id: initialData.id,
+        //   title: title || "Untitled",
+        // });
+        setTitle(title);
         disableInput();
-        toast({
-          title: "Title saved! 🙌",
-        });
+        // toast({
+        //   title: "Title saved! 🙌",
+        // });
       } catch (error) {
         toast({
           title: "Error!",
@@ -68,6 +69,7 @@ export default function TitleComponent({ initialData }: { initialData: Page }) {
 
   useEffect(() => {
     setTitle(initialData.title);
+    setIcon(initialData.icon || "");
   }, [initialData.title]);
 
   if (initialData === undefined) {
@@ -76,7 +78,7 @@ export default function TitleComponent({ initialData }: { initialData: Page }) {
 
   return (
     <div className="flex items-center gap-x-1">
-      <p>{initialData?.icon}</p>
+      <p>{icon}</p>
 
       {isEditing ? (
         <>
@@ -103,7 +105,7 @@ export default function TitleComponent({ initialData }: { initialData: Page }) {
           onClick={enableInput}
           variant="ghost"
           size="sm"
-          className="h-auto py-1 px-1 w-fit ml-1.5 mr-2.5"
+          className="h-auto py-1 px-1 w-fit ml-1 mr-2.5"
         >
           <h2 className="truncate font-medium">{title}</h2>
         </Button>

@@ -10,10 +10,14 @@ import CreateFormButton from "../../components/create-form-button";
 import CreateFormCard from "./_components/create-form-card";
 import FormCard from "./_components/form-card/form-card";
 import SkeletonFormCard from "./_components/form-card/skeleton-form-card";
+import { SearchInput } from "@/components/search-input";
+import { FormsSearchCommand } from "@/components/forms-search-command";
 
 export default function Home() {
   return (
     <div className="container pt-8">
+      <FormsSearchCommand />
+
       <div className="flex flex-row items-center justify-between">
         <h1 className="text-3xl font-bold">Statistics</h1>
         <CreateFormButton />
@@ -26,7 +30,7 @@ export default function Home() {
 
       <Title />
       <Separator className="my-5" />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 ">
         <CreateFormCard />
         <Suspense
           fallback={[1, 2, 3, 4].map((el) => (
@@ -36,6 +40,7 @@ export default function Home() {
           <FormCardsWrapper />
         </Suspense>
       </div>
+      <div className="h-12" />
     </div>
   );
 }
@@ -50,13 +55,16 @@ async function CardStatsWrapper() {
 async function Title() {
   const forms = await GetForms();
   return (
-    <div className="flex flex-row items-center space-x-2 mt-12">
-      <h2 className="text-3xl font-bold col-span-2">Forms</h2>
-      {forms.length !== 0 && (
-        <span className="flex items-center justify-center text-[#524a3ecd] bg-[#a59e922f] dark:bg-[#2D2D2D] dark:text-[#E8E8E8] py-1 px-2 text-sm rounded-full">
-          {forms.length}
-        </span>
-      )}
+    <div className="flex flex-row items-center justify-between w-full mt-12">
+      <div className="flex flex-row items-center space-x-2 ">
+        <h2 className="text-3xl font-bold col-span-2">Forms</h2>
+        {forms.length !== 0 && (
+          <span className="flex items-center justify-center text-[#524a3ecd] bg-[#a59e922f] dark:bg-[#2D2D2D] dark:text-[#E8E8E8] py-1 px-2 text-sm rounded-full">
+            {forms.length}
+          </span>
+        )}
+      </div>
+      <SearchInput searchForms={true} />
     </div>
   );
 }

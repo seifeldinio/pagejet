@@ -15,6 +15,7 @@ import PageDesigner from "./page-designer/page-designer";
 import Loading from "@/components/loading";
 import UnpublishButton from "./buttons/unpublish-button";
 import PageAnalyticsModal from "@/components/modals/page-analytics-modal";
+import ViewButton from "./buttons/view-button";
 
 function PageBuilder({ page }: { page: Page }) {
   // State to make sure the page is ready
@@ -55,17 +56,14 @@ function PageBuilder({ page }: { page: Page }) {
                 Draft
               </Label>
             )}
-            {page.isPublished && (
-              <Label className="bg-green500 text-black dark:bg-green500/90  px-1.5 py-0.5 rounded-full text-xs font-normal">
-                Published
-              </Label>
-            )}
+            {page.isPublished && <UnpublishButton id={page.id} />}
           </div>
           <div className="flex items-center gap-3">
             <AnalyticsButton
               onClick={() => {
                 setOpen(true);
               }}
+              visits={page.visits}
             />
             <SaveButton id={page.id} />
             {!page.isPublished && (
@@ -75,7 +73,7 @@ function PageBuilder({ page }: { page: Page }) {
             )}
             {page.isPublished && (
               <>
-                <UnpublishButton id={page.id} />
+                <ViewButton url={page.shareURL} />
               </>
             )}
           </div>

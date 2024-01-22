@@ -78,7 +78,8 @@ const DeletedCard = ({ page }: { page: Page }) => {
             </span>
           )}
         </CardTitle> */}
-        <div className="flex flex-row items-center justify-between">
+        <div className="flex flex-row items-center space-x-1.5">
+          {page.icon && <span className="text-xs">{page.icon}</span>}
           <span className="truncate font-bold max-w-[140px]">{page.title}</span>
         </div>
 
@@ -91,8 +92,14 @@ const DeletedCard = ({ page }: { page: Page }) => {
       <CardContent className="h-[132px] w-full rounded-lg pb-2">
         {/* {form.description || ""} */}
         <img
-          src="https://miro.medium.com/v2/resize:fit:998/1*lODfmCNtkX9jRqGfPcqh0w.jpeg"
-          className="object-cover h-full w-full rounded-lg"
+          src={page.coverImage || "/images/placeholder.webp"}
+          className="object-cover h-full w-full rounded-lg dark:hidden"
+          alt="Cover"
+          draggable={false}
+        />
+        <img
+          src={page.coverImage || "/images/placeholder-dark.webp"}
+          className="object-cover h-full w-full rounded-lg hidden dark:block"
           alt="Cover"
           draggable={false}
         />

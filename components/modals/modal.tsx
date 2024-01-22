@@ -1,5 +1,5 @@
 // import React from "react";
-import { ReactNode } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 import {
   Dialog,
   DialogContent,
@@ -13,6 +13,7 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   children: ReactNode;
+  className?: string;
   //   description?: string;
 }
 
@@ -21,6 +22,7 @@ const Modal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
   children,
+  className,
   //   description,
 }) => {
   const onChange = (open: boolean) => {
@@ -31,7 +33,7 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onChange}>
-      <DialogContent className="w-[50vw]">
+      <DialogContent className={className}>
         <DialogHeader className="md:hidden lg:flex flex">
           <DialogTitle>{title}</DialogTitle>
           {/* {description && <DialogDescription>{description}</DialogDescription>} */}

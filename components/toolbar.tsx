@@ -55,7 +55,8 @@ function Toolbar({ initialData, preview }: ToolbarProps) {
   const onKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === "Enter") {
       event.preventDefault();
-      UpdatePage({ id: initialData.id, title: title || "Untitled" });
+      // UpdatePage({ id: initialData.id, title: title || "Untitled" });
+      setTitle(title);
       disableInput();
     }
   };
@@ -63,10 +64,11 @@ function Toolbar({ initialData, preview }: ToolbarProps) {
   const onIconSelect = (icon: string) => {
     console.log(icon);
     setIcon(icon);
-    UpdatePage({
-      id: initialData.id,
-      icon,
-    });
+
+    // UpdatePage({
+    //   id: initialData.id,
+    //   icon,
+    // });
   };
 
   const onRemoveIcon = () => {
@@ -79,7 +81,7 @@ function Toolbar({ initialData, preview }: ToolbarProps) {
     setIcon(initialData.icon || "");
     setCoverImage(initialData.coverImage || "");
     // setContent(initialData.content);
-  }, [initialData.title, initialData.icon]);
+  }, [initialData.title, initialData.icon, initialData.coverImage]);
 
   return (
     <>

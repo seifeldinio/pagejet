@@ -10,7 +10,7 @@ import { Loader2, Save } from "lucide-react";
 import React, { useEffect, useState, useTransition } from "react";
 
 const SaveButton = ({ id }: { id: number }) => {
-  const { content } = usePageDesignerContext();
+  const { title, icon, coverImage, content } = usePageDesignerContext();
 
   const [loading, startTransition] = useTransition();
 
@@ -18,7 +18,14 @@ const SaveButton = ({ id }: { id: number }) => {
 
   const save = async () => {
     try {
-      await UpdatePage({ id: id, content });
+      await UpdatePage({
+        id: id,
+        title: title,
+        icon: icon,
+        coverImage: coverImage,
+        content: content,
+      });
+
       toast({
         title: "Saved! 🙌",
         //  description: "",

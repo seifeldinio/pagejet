@@ -6,14 +6,14 @@ import { useMemo } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { usePageDesignerContext } from "@/context/page-designer-context";
 import { Page } from "@prisma/client";
-import NotFound from "../../../../../../../components/not-found";
-import Cover from "../../../../../../../components/cover";
-import Toolbar from "../../../../../../../components/toolbar";
+import NotFound from "@/components/not-found";
+import Cover from "@/components/cover";
+import Toolbar from "@/components/toolbar";
 
 function PageDesigner({ page }: { page: Page }) {
   const Editor = useMemo(
     () =>
-      dynamic(() => import("../../../../../../../components/editor"), {
+      dynamic(() => import("@/components/editor"), {
         ssr: false,
       }),
     []
