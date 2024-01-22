@@ -1,7 +1,8 @@
 "use client";
 
-import CoverImageModal from "@/components/modals/cover-image-modal";
 import { useEffect, useState } from "react";
+import CoverImageModal from "@/components/modals/cover-image-modal";
+import PageAnalyticsModal from "@/components/modals/page-analytics-modal";
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);

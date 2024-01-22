@@ -94,9 +94,10 @@
 }
 
 .cl-internal-17ydaof {
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 24px 48px;
+  border: none;
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 24px 48px; */
   box-shadow: none;
-  border: solid 1px black;
+  /* border: solid 1px black; */
 }
 
 /* Fade in */

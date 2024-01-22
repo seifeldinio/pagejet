@@ -66,8 +66,8 @@ model Page {
   isPublished   Boolean
   visits        Int       @default(0)
   shareURL        String            @unique @default(uuid())
-  pageDailyVisits PageDailyVisit[]
   createdAt DateTime @default(now())
+  pageDailyVisits PageDailyVisit[]
 
   @@unique([title, userId])
 }

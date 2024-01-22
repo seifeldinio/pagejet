@@ -184,6 +184,29 @@ export async function GetPageByIdForBuilder(id: number): Promise<Page | null> {
   });
 }
 
+// GET PAGE BY ID
+export async function GetPageById(id: number) {
+  const user = await currentUser();
+
+  if (!user) {
+    throw new UserNotFoundErr();
+  }
+
+  return await prisma.page.findUnique({
+    where: {
+      userId: user.id,
+      id,
+    },
+    select: {
+      id: true,
+      userId: true,
+      title: true,
+      visits: true,
+      pageDailyVisits: true,
+    },
+  });
+}
+
 // UPDATE PAGE
 export async function UpdatePage(args: {
   id: number;

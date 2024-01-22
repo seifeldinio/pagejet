@@ -10,7 +10,7 @@ import {
 import { Form } from "@prisma/client";
 import React from "react";
 import { formatDistance } from "date-fns";
-import { ArrowRight, Edit, Inbox, Layers } from "lucide-react";
+import { ArrowRight, Edit, Eye, Inbox, Layers } from "lucide-react";
 import IconButton from "@/components/icon-button";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -25,7 +25,7 @@ const FormCard = ({ form }: { form: Form }) => {
           {form.published && (
             <span className="flex items-center gap-2 text-muted-foreground text-xs font-normal">
               <div className="flex flex-row items-center space-x-1">
-                <Layers className="h-3 w-auto" />
+                <Eye className="h-3 w-auto" />
                 <span>{form.visits.toLocaleString()}</span>
               </div>
 
@@ -55,7 +55,7 @@ const FormCard = ({ form }: { form: Form }) => {
             asChild
           >
             <Link href={`/forms/${form.id}`}>
-              <span>View</span> <ArrowRight className="w-3 h-auto" />
+              <span>Open</span> <ArrowRight className="w-3 h-auto" />
             </Link>
           </Button>
         )}
@@ -67,7 +67,7 @@ const FormCard = ({ form }: { form: Form }) => {
             asChild
           >
             <Link href={`/builder/${form.id}`}>
-              <span>Edit</span> <Edit className="w-3 h-auto" />
+              <span>Edit</span>
             </Link>
           </Button>
         )}
