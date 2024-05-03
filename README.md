@@ -62,7 +62,3 @@ PageJet provides an intuitive interface for users to create forms and pages effo
 ## Contributing 🤝
 
 Contributions are welcome! Please feel free to submit issues and pull requests.
-
-## License ⚖️
-
-This project is licensed under the [MIT License](LICENSE).
