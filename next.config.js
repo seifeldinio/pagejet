@@ -3,13 +3,21 @@ const nextConfig = {
   // experimental: {
   //   serverActions: true,
   // },
+  // images: {
+  //   domains: ["files.edgestore.dev"],
+  // },
   images: {
-    domains: ["files.edgestore.dev"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "**",
+      },
+    ],
   },
 };
 
 module.exports = nextConfig;
-
 
 // Injected content via Sentry wizard below
 
