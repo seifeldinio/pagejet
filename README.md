@@ -2,9 +2,9 @@
 
 ![cover 1.png](./cover.webp)
 
-[![Next.js](https://img.shields.io/badge/Next.js-v12.0.7-blue?style=flat-square&logo=next.js)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-v4.5.5-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v3.0.9-blue?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
+[![Next.js](https://img.shields.io/badge/Next.js-v14.1.3-blue?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-v5-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v3.3.0-blue?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
 [![Dnd-Kit](https://img.shields.io/badge/Dnd__Kit-v7.1.1-blue?style=flat-square)](https://dndkit.com/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-v14.1-blue?style=flat-square&logo=postgresql)](https://www.postgresql.org/)
 [![Prisma](https://img.shields.io/badge/Prisma-v3.9.1-blue?style=flat-square&logo=prisma)](https://www.prisma.io/)
