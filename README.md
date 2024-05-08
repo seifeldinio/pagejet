@@ -8,6 +8,7 @@
 [![Dnd-Kit](https://img.shields.io/badge/Dnd__Kit-v7.1.1-blue?style=flat-square)](https://dndkit.com/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-v14.1-blue?style=flat-square&logo=postgresql)](https://www.postgresql.org/)
 [![Prisma](https://img.shields.io/badge/Prisma-v3.9.1-blue?style=flat-square&logo=prisma)](https://www.prisma.io/)
+[![Sentry](https://img.shields.io/badge/Sentry-purple?style=flat-square&logo=sentry)](https://sentry.io/)
 
 
 PageJet is a user-friendly forms and page builder web app built with Next.js, TypeScript, Dnd-Kit, PostgreSQL, Prisma, and Tailwind CSS.
