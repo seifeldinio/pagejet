@@ -3,7 +3,7 @@
 import { SignIn } from "@clerk/nextjs";
 import { useState } from "react";
 import SideImage from "../../_components/side-image";
-import DemoUser from "@/components/demo-user";
+// import DemoUser from "@/components/demo-user";
 
 export default function Page() {
   return (
@@ -18,9 +18,9 @@ export default function Page() {
         </div>
         <SignIn />
         {/* Demo User Information */}
-        <div className="w-[360px] ">
+        {/* <div className="w-[360px] ">
           <DemoUser />
-        </div>
+        </div> */}
       </div>
       <div className="hidden md:flex flex-col flex-1 items-center justify-center bg-[#202023] text-white ">
         <SideImage />
